@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Start All Pages -->
+<div class="all-page-title page-breadcrumb">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>مقالات</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End All Pages -->
+
+<!-- Start blog details -->
+<div class="blog-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading-title text-center">
+					<h2>مقالات</h2>
+					<p> بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-8 col-lg-8 col-12">
+				<div class="blog-inner-details-page">
+					<div class="blog-inner-box">
+						<div class="side-blog-img">
+							<img class="img-fluid" src="{% static 'images/inner-blog-img.jpg' %}" alt="">
+							<div class="date-blog-up">
+								27 Fab
+							</div>
+						</div  style="text-align:right;">
+							<div class="inner-blog-detail details-page">
+							<ul>
+								<li><i class="zmdi zmdi-account"></i>Posted By : <span>{{blogs.author}}</span></li>
+								<li>|</li>
+								<li><i class="zmdi zmdi-time"></i>Date: <span>{{blogs.date}}</span></li>
+								<li><i class=""></i>Created at : <span>{{blogs.created_at}}</span></li>
+							</ul> 	  
+							<li style="text-align: right;">{{blogs.title}}</li>					  
+							<li  style="text-align: right;">{{blogs.content}}</li>					  
+					</div>
+
+
+
+
+
+
+					<div class="blog-comment-box align-items-end">
+						<h3 class="align-items-end">Comments</h3>
+						<div class="comment-item">
+							{% for come in comments  %}
+							  
+							
+							<!-- <div class="comment-item-left">
+									<img src="{% static 'images/avt-img.jpg' %}" alt="">
+								</div> -->
+
+
+							<div class="comment-item-right">
+									<div class="pull-left">
+										<a href="#">{{come.name}}</a>
+										<a href="#">{{come.email}}</a>
+									</div>
+									<div class="pull-right">
+										<i class="fa fa-clock-o" aria-hidden="true"></i>Date: <span>{{come.date}}</span>
+									</div>
+									<div class="des-l">
+										<p>{{come.message}}</p>
+									</div>
+									<!-- <a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a> -->
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<div class="comment-item">
+								<div class="comment-item-left">
+									<img src="{% static 'images/avt-img.jpg' %}" alt="">
+								</div>
+								<div class="comment-item-right">
+									<div class="pull-left">
+										<a href="#">Rubel Ahmed</a>
+									</div>
+									<div class="pull-right">
+										<i class="fa fa-clock-o" aria-hidden="true"></i>Time : <span>11.30 am</span>
+									</div>
+									<div class="des-l">
+										<p>Morbi lacinia ultrices lorem id tincidunt. Cras id dui risus. Pellentesque consectetur id mi sed pharetra. Proin imperdiet gravida nisl, sit amet varius urna. In auctor.</p>
+									</div>
+									<a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a>
+								</div>
+							</div>
+					</div>
+
+
+					<div class="comment-respond-box">
+						<h3 style="text-align: right;"> : نظرت را به اشتراک بذار</h3>
+						<div class="comment-respond-form">
+							<form id="commentrespondform" class="comment-form-respond row" method="POST">
+								{% csrf_token %}
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<input id="name_com" class="form-control" name="name" placeholder="Name"
+											type="text">
+									</div>
+									<div class="form-group">
+										<input id="email_com" class="form-control" name="email" placeholder="Your Email"
+											type="email">
+									</div>
+									<div class="form-group">
+										<input id="email_com" class="form-control" name="date" placeholder="time"
+											type="time">
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6">
+									<div class="form-group">
+										<textarea class="form-control" id="textarea_com" name="message" placeholder="Your Message"
+											rows="2"></textarea>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<button class="btn btn-submit" type="submit" value=""> ارسال نظر </button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+				<div class="right-side-blog">
+					<h3>Search</h3>
+					<div class="blog-search-form">
+						<input name="search" placeholder="Search blog" type="text">
+						<button class="search-btn">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</button>
+					</div>
+					<h3>دسته بندی ها</h3>
+					<div class="blog-categories">
+						<ul>
+							{% for cate in cate %}
+							<li><a href="#"><span>{{cate.title}}</span></a></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<h3>Recent Post</h3>
+					<div class="post-box-blog">
+						<div class="recent-post-box">
+							<div class="recent-box-blog">
+								<div class="recent-img">
+									<img class="img-fluid" src="{% static 'images/post-img-01.jpg' %}" alt="">
+								</div>
+								<div class="recent-info">
+									<ul>
+										<li><i class="zmdi zmdi-account"></i>Posted By : <span>Rubel Ahmed</span></li>
+										<li>|</li>
+										<li><i class="zmdi zmdi-time"></i>Time : <span>11.30 am</span></li>
+									</ul>
+									<h4>Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium.</h4>
+								</div>
+							</div>
+							<!--
+							<div class="recent-box-blog">
+								<div class="recent-img">
+									<img class="img-fluid" src="{% static 'images/post-img-02.jpg' %}" alt="">
+								</div>
+								<div class="recent-info">
+									<ul>
+										<li><i class="zmdi zmdi-account"></i>Posted By : <span>Rubel Ahmed</span></li>
+										<li>|</li>
+										<li><i class="zmdi zmdi-time"></i>Time : <span>11.30 am</span></li>
+									</ul>
+									<h4>Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium.</h4>
+								</div>
+							</div>
+							<div class="recent-box-blog">
+								<div class="recent-img">
+									<img class="img-fluid" src="{% static 'images/post-img-03.jpg' %}" alt="">
+								</div>
+								<div class="recent-info">
+									<ul>
+										<li><i class="zmdi zmdi-account"></i>Posted By : <span>Rubel Ahmed</span></li>
+										<li>|</li>
+										<li><i class="zmdi zmdi-time"></i>Time : <span>11.30 am</span></li>
+									</ul>
+									<h4>Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium.</h4>
+								</div>
+							</div>
+							<div class="recent-box-blog">
+								<div class="recent-img">
+									<img class="img-fluid" src="{% static 'images/post-img-01.jpg' %}" alt="">
+								</div>
+								<div class="recent-info">
+									<ul>
+										<li><i class="zmdi zmdi-account"></i>Posted By : <span>Rubel Ahmed</span></li>
+										<li>|</li>
+										<li><i class="zmdi zmdi-time"></i>Time : <span>11.30 am</span></li>
+									</ul>
+									<h4>Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium.</h4>
+								</div>
+							</div> -->
+						</div>
+					</div>
+					<h3>Recent Tag</h3>
+					<div class="blog-tag-box">
+						<ul class="list-inline tag-list">
+							{% for tag in tags %}
+							<li class="list-inline-item"><a href="#">{{tag.title}}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- End details -->
+
+
+
+{% endblock content %}

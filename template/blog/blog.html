@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Start All Pages -->
+<div class="all-page-title page-breadcrumb">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>مقالات</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End All Pages -->
+
+<!-- Start blog -->
+<div class="blog-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading-title text-center">
+					<h2> مقاله </h2>
+					<p>متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row ">
+			{% for blog in blog %}
+			<div class="col-lg-4 col-md-6 col-12  " >
+				<div class="blog-box-inner"  >
+					<div class="blog-img-box">
+						<img class="img-fluid" src="{{blog.image.url}}" alt="" style="height: 350px; width:350px;">
+						<div class=" blog-detail">
+							<h4 style="text-align: center;">{{blog.discription}}</h4>
+							<ul>
+								<li><span>Post by {{blog.name}}</span></li>
+								<li>|</li>
+								<li><span>{{blog.created_at}}</span></li>
+							</ul>
+							<p class=" d-inline-block  text-truncate" style="max-width:160px;" >{{blog.content}}</p>
+
+							<a class="btn btn-lg btn-circle btn-outline-new-red btn-success"
+								href="{{blog.get_absolute_url}}">خواندن بیشتر</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<!-- End blog -->
+
+
+
+{% endblock content %}
