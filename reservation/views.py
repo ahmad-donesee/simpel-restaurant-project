@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from . forms import ReservationForm
 from . models import Reserve
@@ -10,9 +10,10 @@ def reserve(request):
         reserve_form = ReservationForm(request.POST)
         if reserve_form.is_valid():
             reserve_form.save()
+            return redirect("blog:blog_list")
     else:
         reserve_form=ReservationForm()
-    
+
     context={
         "form":reserve_form
     }
