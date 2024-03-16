@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path,include,reverse
 from django.conf import settings
 from django.conf.urls.static import static
+from food.views import food_list
 
-app_name="config"
+# app_name="config"
 
 urlpatterns = [
+    path("",food_list,name="food_list"),
     path('admin/', admin.site.urls),
     path('foods/', include('food.urls')),
     path('reserve/', include('reservation.urls')),
